@@ -1,7 +1,7 @@
-from typing import Optional, Union, cast
+from typing import Optional, Union
 
 import click
-from pulp_glue.common.context import EntityDefinition, PluginRequirement, PulpEntityContext
+from pulp_glue.common.context import EntityDefinition, PulpEntityContext
 from pulp_glue.common.i18n import get_translation
 from pulp_glue.console.context import (
     PulpConsoleDistributionContext as BaseConsoleDistributionContext,

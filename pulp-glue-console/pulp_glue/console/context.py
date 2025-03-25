@@ -1,5 +1,4 @@
 from gettext import gettext as _
-from typing import Any, ClassVar, Dict, Optional
 
 from pulp_glue.common.context import (
     EntityDefinition,
