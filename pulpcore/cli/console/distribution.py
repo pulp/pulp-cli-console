@@ -5,8 +5,8 @@ from pulp_glue.common.context import EntityDefinition, PluginRequirement, PulpEn
 from pulp_glue.common.i18n import get_translation
 from pulp_glue.console.context import (
     PulpConsoleDistributionContext as BaseConsoleDistributionContext,
-    PulpConsoleRepositoryContext as BaseConsoleRepositoryContext,
 )
+from pulp_glue.console.context import PulpConsoleRepositoryContext as BaseConsoleRepositoryContext
 from pulpcore.cli.common.generic import (
     PulpCLIContext,
     base_path_contains_option,
