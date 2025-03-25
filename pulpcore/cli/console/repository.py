@@ -10,10 +10,10 @@ from pulp_glue.common.context import (
 )
 from pulp_glue.common.i18n import get_translation
 from pulp_glue.core.context import PulpArtifactContext
-from pulp_glue.internal.context import (
-    PulpInternalContentContext,
-    PulpInternalRemoteContext,
-    PulpInternalRepositoryContext,
+from pulp_glue.console.context import (
+    PulpConsoleContentContext,
+    PulpConsoleRemoteContext,
+    PulpConsoleRepositoryContext,
 )
 from pulpcore.cli.common.generic import (
     GroupOption,
@@ -45,9 +45,9 @@ _ = translation.gettext
 
 remote_option = resource_option(
     "--remote",
-    default_plugin="internal",
-    default_type="internal",
-    context_table={"internal:internal": PulpInternalRemoteContext},
+    default_plugin="console",
+    default_type="console",
+    context_table={"console:console": PulpConsoleRemoteContext},
     href_pattern=PulpRemoteContext.HREF_PATTERN,
     help=_("Remote used for syncing in the form '[[<plugin>:]<resource_type>:]<name>' or by href."),
 )
@@ -58,15 +58,15 @@ remote_option = resource_option(
     "-t",
     "--type",
     "repo_type",
-    type=click.Choice(["internal"], case_sensitive=False),
-    default="internal",
+    type=click.Choice(["console"], case_sensitive=False),
+    default="console",
 )
 @pass_pulp_context
 @click.pass_context
 def repository(ctx: click.Context, pulp_ctx: PulpCLIContext, repo_type: str) -> None:
-    """Manage repositories for internal content."""
-    if repo_type == "internal":
-        ctx.obj = PulpInternalRepositoryContext(pulp_ctx)
+    """Manage repositories for console content."""
+    if repo_type == "console":
+        ctx.obj = PulpConsoleRepositoryContext(pulp_ctx)
     else:
         raise NotImplementedError()
 

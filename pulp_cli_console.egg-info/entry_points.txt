@@ -1,2 +1,0 @@
-[pulp_cli.plugins]
-console = pulpcore.cli.console

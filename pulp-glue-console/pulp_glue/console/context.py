@@ -12,28 +12,28 @@ from pulp_glue.common.context import (
 )
 
 
-class PulpInternalContentContext(PulpContentContext):
-    """Context for Internal Content."""
+class PulpConsoleContentContext(PulpContentContext):
+    """Context for Console Content."""
     
-    PLUGIN = "internal"
+    PLUGIN = "console"
     RESOURCE_TYPE = "content"
-    ENTITY = _("internal content")
-    ENTITIES = _("internal content")
-    HREF = "internal_internal_content_href"
-    ID_PREFIX = "content_internal_content"
-    NEEDS_PLUGINS = [PluginRequirement("internal", specifier=">=1.0.0")]
+    ENTITY = _("console content")
+    ENTITIES = _("console content")
+    HREF = "console_console_content_href"
+    ID_PREFIX = "content_console_content"
+    NEEDS_PLUGINS = [PluginRequirement("console", specifier=">=1.0.0")]
 
 
-class PulpInternalDistributionContext(PulpEntityContext):
-    """Context for Internal Distribution."""
+class PulpConsoleDistributionContext(PulpEntityContext):
+    """Context for Console Distribution."""
     
-    PLUGIN = "internal"
-    RESOURCE_TYPE = "internal"
-    ENTITY = _("internal distribution")
-    ENTITIES = _("internal distributions")
-    HREF = "internal_internal_distribution_href"
-    ID_PREFIX = "distributions_internal_internal"
-    NEEDS_PLUGINS = [PluginRequirement("internal", specifier=">=1.0.0")]
+    PLUGIN = "console"
+    RESOURCE_TYPE = "console"
+    ENTITY = _("console distribution")
+    ENTITIES = _("console distributions")
+    HREF = "console_console_distribution_href"
+    ID_PREFIX = "distributions_console_console"
+    NEEDS_PLUGINS = [PluginRequirement("console", specifier=">=1.0.0")]
 
     def preprocess_entity(self, body: EntityDefinition, partial: bool = False) -> EntityDefinition:
         body = super().preprocess_entity(body, partial)
@@ -44,39 +44,39 @@ class PulpInternalDistributionContext(PulpEntityContext):
         return body
 
 
-class PulpInternalRemoteContext(PulpRemoteContext):
-    """Context for Internal Remote."""
+class PulpConsoleRemoteContext(PulpRemoteContext):
+    """Context for Console Remote."""
     
-    PLUGIN = "internal"
-    RESOURCE_TYPE = "internal"
-    ENTITY = _("internal remote")
-    ENTITIES = _("internal remotes")
-    HREF = "internal_internal_remote_href"
-    ID_PREFIX = "remotes_internal_internal"
-    NEEDS_PLUGINS = [PluginRequirement("internal", specifier=">=1.0.0")]
+    PLUGIN = "console"
+    RESOURCE_TYPE = "console"
+    ENTITY = _("console remote")
+    ENTITIES = _("console remotes")
+    HREF = "console_console_remote_href"
+    ID_PREFIX = "remotes_console_console"
+    NEEDS_PLUGINS = [PluginRequirement("console", specifier=">=1.0.0")]
 
 
-class PulpInternalRepositoryVersionContext(PulpRepositoryVersionContext):
-    """Context for Internal Repository Version."""
+class PulpConsoleRepositoryVersionContext(PulpRepositoryVersionContext):
+    """Context for Console Repository Version."""
     
-    PLUGIN = "internal"
-    RESOURCE_TYPE = "internal"
-    HREF = "internal_internal_repository_version_href"
-    ID_PREFIX = "repositories_internal_internal_versions"
-    NEEDS_PLUGINS = [PluginRequirement("internal", specifier=">=1.0.0")]
+    PLUGIN = "console"
+    RESOURCE_TYPE = "console"
+    HREF = "console_console_repository_version_href"
+    ID_PREFIX = "repositories_console_console_versions"
+    NEEDS_PLUGINS = [PluginRequirement("console", specifier=">=1.0.0")]
 
 
-class PulpInternalRepositoryContext(PulpRepositoryContext):
-    """Context for Internal Repository."""
+class PulpConsoleRepositoryContext(PulpRepositoryContext):
+    """Context for Console Repository."""
     
-    PLUGIN = "internal"
-    RESOURCE_TYPE = "internal"
-    HREF = "internal_internal_repository_href"
-    ID_PREFIX = "repositories_internal_internal"
-    VERSION_CONTEXT = PulpInternalRepositoryVersionContext
-    NEEDS_PLUGINS = [PluginRequirement("internal", specifier=">=1.0.0")]
+    PLUGIN = "console"
+    RESOURCE_TYPE = "console"
+    HREF = "console_console_repository_href"
+    ID_PREFIX = "repositories_console_console"
+    VERSION_CONTEXT = PulpConsoleRepositoryVersionContext
+    NEEDS_PLUGINS = [PluginRequirement("console", specifier=">=1.0.0")]
     CAPABILITIES = {
-        "sync": [PluginRequirement("internal", specifier=">=1.0.0")],
+        "sync": [PluginRequirement("console", specifier=">=1.0.0")],
     }
     
     # Add custom methods for your repository operations here
