@@ -1,0 +1,2 @@
+ARG FROM_TAG="latest"
+FROM ghcr.io/pulp/pulp-ci-centos:${FROM_TAG}
