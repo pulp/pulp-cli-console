@@ -32,14 +32,14 @@ class PulpConsoleRepositoryContext(BaseConsoleRepositoryContext):
     """Context for console repositories."""
 
     def __init__(self, pulp_ctx: PulpCLIContext) -> None:
-        super().__init__(pulp_ctx, entity_ctx="console")
+        super().__init__(pulp_ctx, entity="console")
 
 
 class PulpConsoleDistributionContext(BaseConsoleDistributionContext):
     """Context for console distributions."""
 
     def __init__(self, pulp_ctx: PulpCLIContext) -> None:
-        super().__init__(pulp_ctx, entity_ctx="console")
+        super().__init__(pulp_ctx, entity="console")
 
 
 repository_option = resource_option(

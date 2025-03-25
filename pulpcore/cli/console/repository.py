@@ -94,7 +94,7 @@ def sync(
     remote: Optional[PulpEntityContext],
 ) -> None:
     """Sync the repository with a remote."""
-    repository_ctx.sync(remote=remote, mirror=mirror)
+    repository_ctx.sync(body={"remote": remote, "mirror": mirror})
 
 
 # Custom commands
