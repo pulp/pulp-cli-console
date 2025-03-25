@@ -105,4 +105,4 @@ def sync(
     repository_ctx.sync(remote=remote, mirror=mirror)
 
 
-#Custom commands
+# Custom commands

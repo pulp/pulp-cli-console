@@ -14,7 +14,7 @@ from pulp_glue.common.context import (
 
 class PulpConsoleContentContext(PulpContentContext):
     """Context for Console Content."""
-    
+
     PLUGIN = "console"
     RESOURCE_TYPE = "content"
     ENTITY = _("console content")
@@ -26,7 +26,7 @@ class PulpConsoleContentContext(PulpContentContext):
 
 class PulpConsoleDistributionContext(PulpEntityContext):
     """Context for Console Distribution."""
-    
+
     PLUGIN = "console"
     RESOURCE_TYPE = "console"
     ENTITY = _("console distribution")
@@ -46,7 +46,7 @@ class PulpConsoleDistributionContext(PulpEntityContext):
 
 class PulpConsoleRemoteContext(PulpRemoteContext):
     """Context for Console Remote."""
-    
+
     PLUGIN = "console"
     RESOURCE_TYPE = "console"
     ENTITY = _("console remote")
@@ -58,7 +58,7 @@ class PulpConsoleRemoteContext(PulpRemoteContext):
 
 class PulpConsoleRepositoryVersionContext(PulpRepositoryVersionContext):
     """Context for Console Repository Version."""
-    
+
     PLUGIN = "console"
     RESOURCE_TYPE = "console"
     HREF = "console_console_repository_version_href"
@@ -68,7 +68,7 @@ class PulpConsoleRepositoryVersionContext(PulpRepositoryVersionContext):
 
 class PulpConsoleRepositoryContext(PulpRepositoryContext):
     """Context for Console Repository."""
-    
+
     PLUGIN = "console"
     RESOURCE_TYPE = "console"
     HREF = "console_console_repository_href"
@@ -78,7 +78,7 @@ class PulpConsoleRepositoryContext(PulpRepositoryContext):
     CAPABILITIES = {
         "sync": [PluginRequirement("console", specifier=">=1.0.0")],
     }
-    
+
     # Add custom methods for your repository operations here
     # For example:
     # def import_content(self, href: str, artifact: str, ...) -> Any:

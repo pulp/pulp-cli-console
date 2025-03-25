@@ -12,5 +12,5 @@ def pulp_cli_vars(pulp_cli_vars: t.MutableMapping[str, str]) -> t.MutableMapping
     PULP_FIXTURES_URL = pulp_cli_vars["PULP_FIXTURES_URL"]
     result: t.MutableMapping[str, str] = {}
     result.update(pulp_cli_vars)
-    
+
     return result

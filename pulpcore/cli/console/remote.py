@@ -41,9 +41,12 @@ def remote(ctx: click.Context, pulp_ctx: PulpCLIContext, remote_type: str) -> No
     else:
         raise NotImplementedError()
 
+
 remote.add_command(list_command(decorators=[label_select_option]))
 remote.add_command(show_command(decorators=[href_option, name_option]))
 remote.add_command(create_command(decorators=common_remote_create_options))
-remote.add_command(update_command(decorators=[href_option, name_option] + common_remote_update_options))
+remote.add_command(
+    update_command(decorators=[href_option, name_option] + common_remote_update_options)
+)
 remote.add_command(destroy_command(decorators=[href_option, name_option]))
 remote.add_command(label_command())
