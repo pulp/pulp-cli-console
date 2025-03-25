@@ -82,6 +82,6 @@ class PulpConsoleRepositoryContext(PulpRepositoryContext):
     # For example:
     # def import_content(self, href: str, artifact: str, ...) -> Any:
     #     body = {...}
-    #     return self.pulp_ctx.call("your_import_method_id", 
-    #                               parameters={self.HREF: href}, 
+    #     return self.pulp_ctx.call("your_import_method_id",
+    #                               parameters={self.HREF: href},
     #                               body=body)
