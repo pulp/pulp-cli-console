@@ -1,4 +1,5 @@
 import typing as t
+
 import pytest
 
 pytest_plugins = "pytest_pulp_cli"
