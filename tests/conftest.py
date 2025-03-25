@@ -1,6 +1,6 @@
+import os
 import typing as t
 from urllib.parse import urljoin
-import os
 
 import pytest
 

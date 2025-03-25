@@ -1,6 +1,7 @@
 from typing import IO, Any, Dict, Optional
 
 import click
+
 from pulp_glue.common.context import (
     EntityFieldDefinition,
     PluginRequirement,
@@ -9,12 +10,12 @@ from pulp_glue.common.context import (
     PulpRepositoryContext,
 )
 from pulp_glue.common.i18n import get_translation
-from pulp_glue.core.context import PulpArtifactContext
 from pulp_glue.console.context import (
     PulpConsoleContentContext,
     PulpConsoleRemoteContext,
     PulpConsoleRepositoryContext,
 )
+from pulp_glue.core.context import PulpArtifactContext
 from pulpcore.cli.common.generic import (
     GroupOption,
     PulpCLIContext,
