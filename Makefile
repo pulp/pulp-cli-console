@@ -24,8 +24,8 @@ lint:
 	cd pulp-glue-console; isort -c --diff .
 	black --diff --check .
 	flake8
-	.ci/scripts/check_cli_dependencies.py
-	.ci/scripts/check_click_for_mypy.py
+	python3 .ci/scripts/check_cli_dependencies.py
+	python3 .ci/scripts/check_click_for_mypy.py
 	MYPYPATH=pulp-glue-console mypy
 	cd pulp-glue-console; mypy
 	@echo "🙊 Code 🙈 LGTM 🙉 !"
