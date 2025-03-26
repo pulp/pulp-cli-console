@@ -32,7 +32,7 @@ jobs:
           python-version: "${{ matrix.python }}"
       - name: "Install python dependencies"
         run: |
-          pip install dist/pulp_cli_ostree-*.whl pulp-glue-ostree/dist/pulp_glue_ostree-*.whl -r lint_requirements.txt
+          pip install dist/pulp_cli_console-*.whl pulp-glue-console/dist/pulp_glue_console-*.whl -r lint_requirements.txt
       - name: "Lint code"
         run: |
           make lint

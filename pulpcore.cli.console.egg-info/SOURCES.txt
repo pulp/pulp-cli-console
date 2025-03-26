@@ -1,9 +1,0 @@
-pyproject.toml
-pulpcore.cli.console.egg-info/PKG-INFO
-pulpcore.cli.console.egg-info/SOURCES.txt
-pulpcore.cli.console.egg-info/dependency_links.txt
-pulpcore.cli.console.egg-info/top_level.txt
-pulpcore/cli/console/__init__.py
-pulpcore/cli/console/distribution.py
-pulpcore/cli/console/remote.py
-pulpcore/cli/console/repository.py

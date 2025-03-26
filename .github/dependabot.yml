@@ -9,7 +9,7 @@ updates:
     prefix: "[PIP] "
   open-pull-requests-limit: 10
 - package-ecosystem: "pip"
-  directory: "/pulp-glue-ostree"
+  directory: "/pulp-glue-console"
   schedule:
     interval: "daily"
   commit-message:

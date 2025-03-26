@@ -1,9 +1,12 @@
-from typing import Optional, Union, cast
+from typing import Optional, Union
 
 import click
-from pulp_glue.common.context import EntityDefinition, PluginRequirement, PulpEntityContext
+from pulp_glue.common.context import EntityDefinition, PulpEntityContext
 from pulp_glue.common.i18n import get_translation
-from pulp_glue.internal.context import PulpInternalDistributionContext, PulpInternalRepositoryContext
+from pulp_glue.console.context import (
+    PulpConsoleDistributionContext as BaseConsoleDistributionContext,
+)
+from pulp_glue.console.context import PulpConsoleRepositoryContext as BaseConsoleRepositoryContext
 from pulpcore.cli.common.generic import (
     PulpCLIContext,
     base_path_contains_option,
@@ -25,11 +28,25 @@ translation = get_translation(__package__)
 _ = translation.gettext
 
 
+class PulpConsoleRepositoryContext(BaseConsoleRepositoryContext):
+    """Context for console repositories."""
+
+    def __init__(self, pulp_ctx: PulpCLIContext) -> None:
+        super().__init__(pulp_ctx, entity={"name": "console"})
+
+
+class PulpConsoleDistributionContext(BaseConsoleDistributionContext):
+    """Context for console distributions."""
+
+    def __init__(self, pulp_ctx: PulpCLIContext) -> None:
+        super().__init__(pulp_ctx, entity={"name": "console"})
+
+
 repository_option = resource_option(
     "--repository",
-    default_plugin="internal",
-    default_type="internal",
-    context_table={"internal:internal": PulpInternalRepositoryContext},
+    default_plugin="console",
+    default_type="console",
+    context_table={"console:console": PulpConsoleRepositoryContext},
 )
 
 
@@ -38,15 +55,15 @@ repository_option = resource_option(
     "-t",
     "--type",
     "distribution_type",
-    type=click.Choice(["internal"], case_sensitive=False),
-    default="internal",
+    type=click.Choice(["console"], case_sensitive=False),
+    default="console",
 )
 @pass_pulp_context
 @click.pass_context
 def distribution(ctx: click.Context, pulp_ctx: PulpCLIContext, distribution_type: str) -> None:
-    """Manage distributions of internal content."""
-    if distribution_type == "internal":
-        ctx.obj = PulpInternalDistributionContext(pulp_ctx)
+    """Manage distributions of console content."""
+    if distribution_type == "console":
+        ctx.obj = PulpConsoleDistributionContext(pulp_ctx)
     else:
         raise NotImplementedError()
 
