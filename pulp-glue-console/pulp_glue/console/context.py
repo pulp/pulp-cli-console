@@ -12,7 +12,7 @@ class PulpVulnerabilityReportContext(PulpEntityContext):
     ID_PREFIX = "vuln_report"
     HREF = "service_vulnerability_report_href"
 
-    def upload(self, file: t.IO[bytes], chunk_size: int = 1000000) -> dict:
+    def upload(self, file: t.IO[bytes], chunk_size: int = 1000000) -> t.Dict[str, t.Any]:
         """Upload a vulnerability report from a JSON file.
 
         Args:
@@ -30,4 +30,4 @@ class PulpVulnerabilityReportContext(PulpEntityContext):
             body={"package_json": file_content},
             validate_body=False,
         )
-        return response
+        return t.cast(t.Dict[str, t.Any], response)
