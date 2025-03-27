@@ -1,28 +1,34 @@
-from typing import Any
-
 import click
-from pulp_glue.common.i18n import get_translation
-from pulpcore.cli.common.generic import pulp_group
+import json
+import typing as t
+from pulp_glue.common.openapi import OpenAPI, _Response
+from pulp_glue.common.exceptions import OpenAPIError
 
-from pulpcore.cli.console.distribution import distribution
-from pulpcore.cli.console.remote import remote
-from pulpcore.cli.console.repository import repository
-
-translation = get_translation(__package__)
-_ = translation.gettext
-
-__version__ = "0.1.0.dev"
-
-
-@pulp_group("console")
-def console_group() -> None:
-    """Manage Console plugin."""
-    pass
-
-
-def mount(main: click.Group, **kwargs: Any) -> None:
-    """Mount the console commands to the CLI."""
-    console_group.add_command(distribution)
-    console_group.add_command(remote)
-    console_group.add_command(repository)
-    main.add_command(console_group)
+def mount(main: click.Group, **kwargs) -> None:
+    # Store the original _parse_response method
+    original_parse_response = OpenAPI._parse_response
+    
+    # Define our custom implementation that handles 202 responses
+    def custom_parse_response(self, method_spec: t.Dict[str, t.Any], response: _Response) -> t.Any:
+        # Handle 202 responses directly
+        if response.status_code == 202:
+            content_type = response.headers.get("content-type")
+            if content_type is not None and content_type.startswith("application/json"):
+                return json.loads(response.body)
+            return {"status": "accepted"}
+            
+        # For all other responses, use the original implementation
+        return original_parse_response(self, method_spec, response)
+    
+    # Apply the patch
+    OpenAPI._parse_response = custom_parse_response
+    
+    # Continue with normal mounting
+    from pulpcore.cli.console.vulnerability import attach_vulnerability_commands
+    
+    @main.group()
+    def console():
+        """Pulp Console commands."""
+        pass
+    
+    attach_vulnerability_commands(console)
