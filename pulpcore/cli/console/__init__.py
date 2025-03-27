@@ -8,8 +8,8 @@ from pulp_glue.common.openapi import OpenAPI, _Response
 def mount(main: click.Group, **kwargs) -> None:
     # Store the original _parse_response method
     original_parse_response = OpenAPI._parse_response
-    
-    # Define our custom implementation that handles 202 responses
+
+    # Define our custom implementation that handles 202 responses (Original one throws an error)
     def custom_parse_response(self, method_spec: t.Dict[str, t.Any], response: _Response) -> t.Any:
         # Handle 202 responses directly
         if response.status_code == 202:
@@ -17,19 +17,19 @@ def mount(main: click.Group, **kwargs) -> None:
             if content_type is not None and content_type.startswith("application/json"):
                 return json.loads(response.body)
             return {"status": "accepted"}
-            
+
         # For all other responses, use the original implementation
         return original_parse_response(self, method_spec, response)
-    
+
     # Apply the patch
     OpenAPI._parse_response = custom_parse_response
-    
+
     # Continue with normal mounting
     from pulpcore.cli.console.vulnerability import attach_vulnerability_commands
-    
+
     @main.group()
     def console():
         """Pulp Console commands."""
         pass
-    
+
     attach_vulnerability_commands(console)
