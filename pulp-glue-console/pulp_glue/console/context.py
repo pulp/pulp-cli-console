@@ -1,5 +1,5 @@
-from gettext import gettext as _
 import typing as t
+from gettext import gettext as _
 
 from pulp_glue.common.context import PulpEntityContext
 
