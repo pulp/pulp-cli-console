@@ -1,17 +1,8 @@
 from gettext import gettext as _
 import typing as t
-import json
 
-from pulp_glue.common.context import (
-    EntityDefinition,
-    PluginRequirement,
-    PulpContentContext,
-    PulpEntityContext,
-    PulpRemoteContext,
-    PulpRepositoryContext,
-    PulpRepositoryVersionContext,
-)
-from pulp_glue.common.exceptions import OpenAPIError, PulpException
+from pulp_glue.common.context import PulpEntityContext
+
 
 class PulpVulnerabilityReportContext(PulpEntityContext):
     """Context for working with vulnerability reports."""
@@ -20,14 +11,14 @@ class PulpVulnerabilityReportContext(PulpEntityContext):
     ENTITIES = _("vulnerability reports")
     ID_PREFIX = "vuln_report"
     HREF = "service_vulnerability_report_href"
-    
+
     def upload(self, file: t.IO[bytes], chunk_size: int = 1000000) -> dict:
         """Upload a vulnerability report from a JSON file.
-        
+
         Args:
             file: The file object to upload
             chunk_size: The chunk size for the upload
-            
+
         Returns:
             The created vulnerability report entity
         """

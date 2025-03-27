@@ -1,8 +1,9 @@
-import click
 import json
 import typing as t
+
+import click
 from pulp_glue.common.openapi import OpenAPI, _Response
-from pulp_glue.common.exceptions import OpenAPIError
+
 
 def mount(main: click.Group, **kwargs) -> None:
     # Store the original _parse_response method
