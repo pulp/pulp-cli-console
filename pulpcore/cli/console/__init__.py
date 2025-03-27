@@ -2,7 +2,7 @@ import json
 import typing as t
 
 import click
-from pulp_glue.common.openapi import OpenAPI, _Response
+from pulp_glue.common.openapi import OpenAPI
 
 
 def mount(main: click.Group, **kwargs: t.Any) -> None:
@@ -11,7 +11,7 @@ def mount(main: click.Group, **kwargs: t.Any) -> None:
 
     # Define our custom implementation that handles 202 responses (Original one throws an error)
     def custom_parse_response(
-        self: OpenAPI, method_spec: t.Dict[str, t.Any], response: _Response
+        self: OpenAPI, method_spec: t.Dict[str, t.Any], response: t.Any
     ) -> t.Any:
         # Handle 202 responses directly
         if response.status_code == 202:
