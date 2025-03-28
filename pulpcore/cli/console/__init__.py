@@ -13,7 +13,7 @@ def mount(main: click.Group, **kwargs: t.Any) -> None:
         original_parse_response = OpenAPI._parse_response
         parse_response_attr = "_parse_response"
     else:
-        original_parse_response = OpenAPI.parse_response
+        original_parse_response = OpenAPI.parse_response  # type: ignore[attr-defined]
         parse_response_attr = "parse_response"
 
     # Define our custom implementation that handles 202 responses (Original one throws an error)
