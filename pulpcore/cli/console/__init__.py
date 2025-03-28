@@ -15,6 +15,7 @@ def mount(main: click.Group, **kwargs: t.Any) -> None:
     else:
         original_parse_response = OpenAPI.parse_response
         parse_response_attr = "parse_response"
+    
     # Define our custom implementation that handles 202 responses (Original one throws an error)
     def custom_parse_response(
         self: OpenAPI, method_spec: t.Dict[str, t.Any], response: t.Any
