@@ -30,7 +30,7 @@ def mount(main: click.Group, **kwargs: t.Any) -> None:
         # For all other responses, use the original implementation
         return original_parse_response(self, method_spec, response)
 
-    setattr(OpenAPI, "_parse_response", custom_parse_response)
+    setattr(OpenAPI, parse_response_attr, custom_parse_response)
 
     # Continue with normal mounting
     from pulpcore.cli.console.vulnerability import attach_vulnerability_commands
