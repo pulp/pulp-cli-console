@@ -6,9 +6,6 @@ from pulp_glue.common.openapi import OpenAPI
 
 
 def mount(main: click.Group, **kwargs: t.Any) -> None:
-    # Store the original _parse_response method
-    original_parse_response = OpenAPI._parse_response
-    # Check which version of the method name is available
     if hasattr(OpenAPI, "_parse_response"):
         original_parse_response = OpenAPI._parse_response
         parse_response_attr = "_parse_response"
