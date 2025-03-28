@@ -1,6 +1,7 @@
 import typing as t
 from gettext import gettext as _
 
+from pulp_glue.common.context import PulpContext
 from pulp_glue.common.context import PulpEntityContext
 
 
@@ -31,3 +32,22 @@ class PulpVulnerabilityReportContext(PulpEntityContext):
             validate_body=False,
         )
         return t.cast(t.Dict[str, t.Any], response)
+
+class AdminTaskContext:
+    """Context for accessing admin tasks directly without using the entity framework."""
+    
+    def __init__(self, pulp_ctx: PulpContext) -> None:
+        self.pulp_ctx = pulp_ctx
+        
+    def list(self, limit=None, offset=None, parameters=None):
+        """List all admin tasks."""
+        if parameters is None:
+            parameters = {}
+        if limit:
+            parameters["limit"] = limit
+        if offset:
+            parameters["offset"] = offset
+        
+        # Use the correct attribute _api_root instead of api_root
+        url = f"{self.pulp_ctx._api_root}api/pulp/admin/tasks/"
+        return self.pulp_ctx.call("tasks_list", url, parameters=parameters)
