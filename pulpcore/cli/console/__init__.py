@@ -33,7 +33,6 @@ def mount(main: click.Group, **kwargs: t.Any) -> None:
     from pulpcore.cli.console.tasks import attach_tasks_commands
     from pulpcore.cli.console.vulnerability import attach_vulnerability_commands
 
-
     @main.group()
     def console() -> None:
         """Pulp Console commands."""

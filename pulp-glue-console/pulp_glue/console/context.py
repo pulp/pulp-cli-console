@@ -32,18 +32,32 @@ class PulpVulnerabilityReportContext(PulpEntityContext):
         )
         return t.cast(t.Dict[str, t.Any], response)
 
-class AdminTaskContext():
+
+class AdminTaskContext:
     """Context for accessing admin tasks directly without using the entity framework."""
-    
+
     def __init__(self, pulp_ctx: PulpContext) -> None:
         self.pulp_ctx = pulp_ctx
-        
-    def list(self, limit=None, offset=None, parameters=None,
-             name=None, name__contains=None, logging_cid__contains=None,
-             state=None, state__in=None, task_group=None, parent_task=None,
-             worker=None, created_resources=None,
-             started_at__gte=None, started_at__lte=None,
-             finished_at__gte=None, finished_at__lte=None):
+
+    def list(
+        self,
+        limit=None,
+        offset=None,
+        parameters=None,
+        name=None,
+        name__contains=None,
+        logging_cid__contains=None,
+        state=None,
+        state__in=None,
+        task_group=None,
+        parent_task=None,
+        worker=None,
+        created_resources=None,
+        started_at__gte=None,
+        started_at__lte=None,
+        finished_at__gte=None,
+        finished_at__lte=None,
+    ):
         """List all admin tasks with optional filtering parameters."""
         if parameters is None:
             parameters = {}
@@ -51,7 +65,7 @@ class AdminTaskContext():
             parameters["limit"] = limit
         if offset:
             parameters["offset"] = offset
-            
+
         # Add all task filters from generic.py
         if name:
             parameters["name"] = name
@@ -79,7 +93,7 @@ class AdminTaskContext():
             parameters["finished_at__gte"] = finished_at__gte
         if finished_at__lte:
             parameters["finished_at__lte"] = finished_at__lte
-        
+
         # Use the correct attribute _api_root instead of api_root
         url = f"{self.pulp_ctx._api_root}api/pulp/admin/tasks/"
         return self.pulp_ctx.call("tasks_list", url, parameters=parameters)

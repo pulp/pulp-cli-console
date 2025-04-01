@@ -21,24 +21,36 @@ def attach_tasks_commands(console_group: click.Group) -> None:
     @click.option("--offset", type=int, help="Skip a number of tasks")
     @click.option("--name", help="Filter by task name")
     @click.option("--name-contains", "name__contains", help="Filter tasks containing this name")
-    @click.option("--logging-cid-contains", "logging_cid__contains", help="Filter by logging correlation ID")
+    @click.option(
+        "--logging-cid-contains", "logging_cid__contains", help="Filter by logging correlation ID"
+    )
     @click.option("--state", help="Filter by task state")
     @click.option("--state-in", "state__in", help="Filter by multiple states (comma-separated)")
     @click.option("--task-group", help="Filter by task group")
     @click.option("--parent-task", help="Filter by parent task")
     @click.option("--worker", help="Filter by worker")
     @click.option("--created-resources", help="Filter by created resources")
-    @click.option("--started-at-gte", "started_at__gte", help="Filter by start time (greater than or equal)")
-    @click.option("--started-at-lte", "started_at__lte", help="Filter by start time (less than or equal)")
-    @click.option("--finished-at-gte", "finished_at__gte", help="Filter by finish time (greater than or equal)")
-    @click.option("--finished-at-lte", "finished_at__lte", help="Filter by finish time (less than or equal)")
+    @click.option(
+        "--started-at-gte", "started_at__gte", help="Filter by start time (greater than or equal)"
+    )
+    @click.option(
+        "--started-at-lte", "started_at__lte", help="Filter by start time (less than or equal)"
+    )
+    @click.option(
+        "--finished-at-gte",
+        "finished_at__gte",
+        help="Filter by finish time (greater than or equal)",
+    )
+    @click.option(
+        "--finished-at-lte", "finished_at__lte", help="Filter by finish time (less than or equal)"
+    )
     @click.pass_context
     @pass_pulp_context
     def list(
-        pulp_ctx: PulpCLIContext, 
-        ctx: click.Context, 
-        /, 
-        limit: int = None, 
+        pulp_ctx: PulpCLIContext,
+        ctx: click.Context,
+        /,
+        limit: int = None,
         offset: int = None,
         name: str = None,
         name__contains: str = None,
@@ -57,7 +69,7 @@ def attach_tasks_commands(console_group: click.Group) -> None:
         """List all admin tasks."""
         task_ctx = ctx.obj
         result = task_ctx.list(
-            limit=limit, 
+            limit=limit,
             offset=offset,
             name=name,
             name__contains=name__contains,
