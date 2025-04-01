@@ -1,3 +1,5 @@
+from typing import Optional
+
 import click
 from pulp_glue.common.context import PulpContext
 from pulp_glue.console.context import AdminTaskContext
@@ -50,23 +52,22 @@ def attach_tasks_commands(console_group: click.Group) -> None:
         pulp_ctx: PulpCLIContext,
         ctx: click.Context,
         /,
-        limit: int = None,
-        offset: int = None,
-        name: str = None,
-        name__contains: str = None,
-        logging_cid__contains: str = None,
-        state: str = None,
-        state__in: str = None,
-        task_group: str = None,
-        parent_task: str = None,
-        worker: str = None,
-        created_resources: str = None,
-        started_at__gte: str = None,
-        started_at__lte: str = None,
-        finished_at__gte: str = None,
-        finished_at__lte: str = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+        name: Optional[str] = None,
+        name__contains: Optional[str] = None,
+        logging_cid__contains: Optional[str] = None,
+        state: Optional[str] = None,
+        state__in: Optional[str] = None,
+        task_group: Optional[str] = None,
+        parent_task: Optional[str] = None,
+        worker: Optional[str] = None,
+        created_resources: Optional[str] = None,
+        started_at__gte: Optional[str] = None,
+        started_at__lte: Optional[str] = None,
+        finished_at__gte: Optional[str] = None,
+        finished_at__lte: Optional[str] = None,
     ) -> None:
-        """List all admin tasks."""
         task_ctx = ctx.obj
         result = task_ctx.list(
             limit=limit,

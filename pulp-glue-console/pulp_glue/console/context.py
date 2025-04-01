@@ -41,23 +41,23 @@ class AdminTaskContext:
 
     def list(
         self,
-        limit=None,
-        offset=None,
-        parameters=None,
-        name=None,
-        name__contains=None,
-        logging_cid__contains=None,
-        state=None,
-        state__in=None,
-        task_group=None,
-        parent_task=None,
-        worker=None,
-        created_resources=None,
-        started_at__gte=None,
-        started_at__lte=None,
-        finished_at__gte=None,
-        finished_at__lte=None,
-    ):
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+        parameters: t.Optional[t.Dict[str, t.Any]] = None,
+        name: t.Optional[str] = None,
+        name__contains: t.Optional[str] = None,
+        logging_cid__contains: t.Optional[str] = None,
+        state: t.Optional[str] = None,
+        state__in: t.Optional[str] = None,
+        task_group: t.Optional[str] = None,
+        parent_task: t.Optional[str] = None,
+        worker: t.Optional[str] = None,
+        created_resources: t.Optional[str] = None,
+        started_at__gte: t.Optional[str] = None,
+        started_at__lte: t.Optional[str] = None,
+        finished_at__gte: t.Optional[str] = None,
+        finished_at__lte: t.Optional[str] = None,
+    ) -> t.Dict[str, t.Any]:
         """List all admin tasks with optional filtering parameters."""
         if parameters is None:
             parameters = {}
@@ -65,8 +65,6 @@ class AdminTaskContext:
             parameters["limit"] = limit
         if offset:
             parameters["offset"] = offset
-
-        # Add all task filters from generic.py
         if name:
             parameters["name"] = name
         if name__contains:
@@ -96,4 +94,8 @@ class AdminTaskContext:
 
         # Use the correct attribute _api_root instead of api_root
         url = f"{self.pulp_ctx._api_root}api/pulp/admin/tasks/"
-        return self.pulp_ctx.call("tasks_list", url, parameters=parameters)
+        return self.pulp_ctx.call(
+            "tasks_list", 
+            base_url=url,
+            parameters=parameters
+        )
