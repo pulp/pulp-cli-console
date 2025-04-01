@@ -1,8 +1,7 @@
 import typing as t
 from gettext import gettext as _
 
-from pulp_glue.common.context import PulpContext
-from pulp_glue.common.context import PulpEntityContext
+from pulp_glue.common.context import PulpContext, PulpEntityContext
 
 
 class PulpVulnerabilityReportContext(PulpEntityContext):
