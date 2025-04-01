@@ -30,8 +30,9 @@ def mount(main: click.Group, **kwargs: t.Any) -> None:
     setattr(OpenAPI, parse_response_attr, custom_parse_response)
 
     # Continue with normal mounting
-    from pulpcore.cli.console.vulnerability import attach_vulnerability_commands
     from pulpcore.cli.console.tasks import attach_tasks_commands
+    from pulpcore.cli.console.vulnerability import attach_vulnerability_commands
+
 
     @main.group()
     def console() -> None:

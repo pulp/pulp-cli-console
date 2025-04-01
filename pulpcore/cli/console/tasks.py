@@ -7,6 +7,7 @@ from pulpcore.cli.common.generic import (
     pass_pulp_context,
 )
 
+
 def attach_tasks_commands(console_group: click.Group) -> None:
     @console_group.group()
     @pass_pulp_context
