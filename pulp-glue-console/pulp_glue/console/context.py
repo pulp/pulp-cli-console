@@ -12,7 +12,7 @@ class PulpVulnerabilityReportContext(PulpEntityContext):
     ID_PREFIX = "vuln_report"
     HREF = "service_vulnerability_report_href"
 
-    def create(self, file: t.IO[bytes], chunk_size: int = 1000000) -> t.Dict[str, t.Any]:
+    def create_report(self, file: t.IO[bytes], chunk_size: int = 1000000) -> t.Dict[str, t.Any]:
         """Create a vulnerability report from a JSON file.
 
         Args:
