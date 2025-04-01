@@ -92,5 +92,4 @@ class AdminTaskContext:
         if finished_at__lte:
             parameters["finished_at__lte"] = finished_at__lte
 
-        url = f"{self.pulp_ctx._api_root}api/pulp/admin/tasks/"
-        return self.pulp_ctx.call("tasks_list", base_url=url, parameters=parameters)
+        return self.pulp_ctx.call("tasks_list", parameters=parameters)
