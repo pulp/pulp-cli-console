@@ -92,4 +92,4 @@ class AdminTaskContext:
         if finished_at__lte:
             parameters["finished_at__lte"] = finished_at__lte
 
-        return self.pulp_ctx.call("tasks_list", parameters=parameters)
+        return t.cast(t.Dict[str, t.Any], self.pulp_ctx.call("tasks_list", parameters=parameters))
