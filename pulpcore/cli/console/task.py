@@ -14,11 +14,11 @@ def attach_tasks_commands(console_group: click.Group) -> None:
     @console_group.group()
     @pass_pulp_context
     @click.pass_context
-    def tasks(ctx: click.Context, pulp_ctx: PulpContext, /) -> None:
+    def task(ctx: click.Context, pulp_ctx: PulpContext, /) -> None:
         """Manage admin tasks."""
         ctx.obj = AdminTaskContext(pulp_ctx)
 
-    @tasks.command()
+    @task.command()
     @click.option("--limit", type=int, help="Limit the number of tasks shown")
     @click.option("--offset", type=int, help="Skip a number of tasks")
     @click.option("--name", help="Filter by task name")
@@ -46,6 +46,36 @@ def attach_tasks_commands(console_group: click.Group) -> None:
     @click.option(
         "--finished-at-lte", "finished_at__lte", help="Filter by finish time (less than or equal)"
     )
+    @click.option(
+        "--reserved-resource",
+        "reserved_resources",
+        help="Href of a resource reserved by the task",
+    )
+    @click.option(
+        "--reserved-resource-in",
+        "reserved_resources__in",
+        help="Href of a resource reserved by the task (comma-separated)",
+    )
+    @click.option(
+        "--exclusive-resource",
+        "exclusive_resources",
+        help="Href of a resource reserved exclusively by the task",
+    )
+    @click.option(
+        "--exclusive-resource-in",
+        "exclusive_resources__in",
+        help="Href of a resource reserved exclusively by the task (comma-separated)",
+    )
+    @click.option(
+        "--shared-resource",
+        "shared_resources",
+        help="Href of a resource shared by the task",
+    )
+    @click.option(
+        "--shared-resource-in",
+        "shared_resources__in",
+        help="Href of a resource shared by the task (comma-separated)",
+    )
     @click.pass_context
     @pass_pulp_context
     def list(
@@ -67,6 +97,12 @@ def attach_tasks_commands(console_group: click.Group) -> None:
         started_at__lte: Optional[str] = None,
         finished_at__gte: Optional[str] = None,
         finished_at__lte: Optional[str] = None,
+        reserved_resources: Optional[str] = None,
+        reserved_resources__in: Optional[str] = None,
+        exclusive_resources: Optional[str] = None,
+        exclusive_resources__in: Optional[str] = None,
+        shared_resources: Optional[str] = None,
+        shared_resources__in: Optional[str] = None,
     ) -> None:
         task_ctx = ctx.obj
         result = task_ctx.list(
@@ -85,5 +121,11 @@ def attach_tasks_commands(console_group: click.Group) -> None:
             started_at__lte=started_at__lte,
             finished_at__gte=finished_at__gte,
             finished_at__lte=finished_at__lte,
+            reserved_resources=reserved_resources,
+            reserved_resources__in=reserved_resources__in,
+            exclusive_resources=exclusive_resources,
+            exclusive_resources__in=exclusive_resources__in,
+            shared_resources=shared_resources,
+            shared_resources__in=shared_resources__in,
         )
         pulp_ctx.output_result(result)
