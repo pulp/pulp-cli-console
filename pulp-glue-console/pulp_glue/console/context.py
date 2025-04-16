@@ -32,6 +32,25 @@ class PulpVulnerabilityReportContext(PulpEntityContext):
         )
         return t.cast(t.Dict[str, t.Any], response)
 
+    def create_rpm_report(self, repo_version: str) -> t.Dict[str, t.Any]:
+        """Create a vulnerability report from an RPM repository version.
+
+        Args:
+            repo_version: The repository version reference to use
+
+        Returns:
+            The created vulnerability report entity
+        """
+        # Format for multipart
+        data = {"repo_version": repo_version}
+
+        response = self.pulp_ctx.call(
+            operation_id="vuln_report_create",
+            body=data,
+            validate_body=False,
+        )
+        return t.cast(t.Dict[str, t.Any], response)
+
 
 class AdminTaskContext:
     """Context for accessing admin tasks directly without using the entity framework."""
