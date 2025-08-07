@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pulp-cli-console"
-version = "0.1.4.dev"
+version = "0.1.5.dev"
 description = "Command line interface to talk to pulpcore's REST API. (Console plugin commands)"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -25,7 +25,7 @@ classifiers=[
 ]
 dependencies = [
   "pulp-cli>=0.23.1,<0.36",
-  "pulp-glue-console==0.1.4.dev"
+  "pulp-glue-console==0.1.5.dev"
   ]
 
 [project.urls]
