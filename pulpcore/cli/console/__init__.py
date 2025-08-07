@@ -32,6 +32,7 @@ def mount(main: click.Group, **kwargs: t.Any) -> None:
     # Continue with normal mounting
     from pulpcore.cli.console.task import attach_tasks_commands
     from pulpcore.cli.console.vulnerability import attach_vulnerability_commands
+    from pulpcore.cli.console.populated_domain import attach_domain_commands
 
     @main.group()
     def console() -> None:
@@ -40,3 +41,4 @@ def mount(main: click.Group, **kwargs: t.Any) -> None:
 
     attach_vulnerability_commands(console)  # type: ignore
     attach_tasks_commands(console)  # type: ignore
+    attach_domain_commands(console)  # type: ignore
