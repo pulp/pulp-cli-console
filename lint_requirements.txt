@@ -1,5 +1,6 @@
 # Lint requirements
 black==25.1.0
+click~=8.1.1  # mypy strict-mode checks against click's decorators only pass with click~=8.1.1
 flake8==7.3.0
 flake8-pyproject==1.2.3
 isort==6.0.1
