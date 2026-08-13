@@ -1,7 +1,6 @@
-import typing as t
-
 import click
 from pulp_glue.common.context import PulpContext
+
 from pulpcore.cli.common.generic import pass_pulp_context
 
 
