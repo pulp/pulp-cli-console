@@ -26,7 +26,7 @@ def create(
     }
 
     try:
-        response = pulp_ctx.call(operation_id="api_pulp_create_domain_post", body=data)
+        response = pulp_ctx.call(operation_id="api_pulp_create_domain_create", body=data)
 
         click.echo(f"Domain '{name}' created successfully!")
         click.echo(f"Domain ID: {response.get('pulp_id', 'N/A')}")
