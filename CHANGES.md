@@ -10,6 +10,22 @@
 
 [//]: # (towncrier release notes start)
 
+## 0.1.7 (2026-08-18) {: #0.1.7 }
+
+
+#### Bugfixes {: #0.1.7-bugfix }
+
+- Fixed `pulp console populated-domain create` to call the `api_pulp_create_domain_create` operation instead of the now-removed `api_pulp_create_domain_post`. `pulp-service` added RBAC support to its self-service domain-creation endpoint, which changed the auto-generated OpenAPI operation ID from a `_post` to a `_create` suffix.
+
+
+### Pulp-console GLUE {: #0.1.7-pulp-console-glue }
+
+
+No significant changes.
+
+
+---
+
 ## 0.1.6 (2026-08-13) {: #0.1.6 }
 
 

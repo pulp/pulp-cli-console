@@ -4,7 +4,7 @@ import typing as t
 import click
 from pulp_glue.common.openapi import OpenAPI
 
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 
 
 def mount(main: click.Group, **kwargs: t.Any) -> None:
